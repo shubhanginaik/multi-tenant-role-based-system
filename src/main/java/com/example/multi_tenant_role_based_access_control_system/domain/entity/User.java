@@ -10,7 +10,13 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,7 +29,7 @@ public class User {
   private String password;
   private LocalDateTime createdAt;
 
-  @OneToMany(mappedBy = "user")  // One user -> Many UserOrganization entries
+  @OneToMany(mappedBy = "user")
   private Set<UserOrganization> userOrganizations = new HashSet<>();
 }
 

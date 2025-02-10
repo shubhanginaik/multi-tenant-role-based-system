@@ -8,7 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table
 public class RolePermissions {
@@ -17,11 +23,11 @@ public class RolePermissions {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @ManyToOne  // Many-to-One with Permission
+  @ManyToOne
   @JoinColumn(name = "role_id", nullable = false)
   private Role role;
 
-  @ManyToOne  // Many-to-One with Permission
+  @ManyToOne
   @JoinColumn(name = "permission_id", nullable = false)
   private Permission permission;
 

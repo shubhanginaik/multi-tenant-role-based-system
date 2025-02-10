@@ -9,7 +9,13 @@ import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -20,6 +26,6 @@ public class Role {
   private String name;  // e.g. "admin", "user", "guest"
   private String description;
 
-  @OneToMany(mappedBy = "role")  // One role -> Many UserOrganization entries
+  @OneToMany(mappedBy = "role")
   private Set<RolePermissions> rolePermissions = new HashSet<>();
 }

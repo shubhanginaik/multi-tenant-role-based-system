@@ -8,7 +8,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table(name = "user_organization")
 public class UserOrganization {
@@ -16,15 +22,15 @@ public class UserOrganization {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
 
-  @ManyToOne  // Many-to-One with User
+  @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  @ManyToOne  // Many-to-One with Organization
+  @ManyToOne
   @JoinColumn(name = "org_id", nullable = false)
   private Organization organization;
 
-  @ManyToOne  // Many-to-One with Role
+  @ManyToOne
   @JoinColumn(name = "role_id", nullable = false)
   private Role role;
 }
