@@ -1,12 +1,6 @@
 package com.example.multi_tenant_role_based_access_control_system.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table
+@Table(name = "role_permissions")
 public class RolePermissions {
-
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private UUID id;
@@ -30,7 +23,4 @@ public class RolePermissions {
   @ManyToOne
   @JoinColumn(name = "permission_id", nullable = false)
   private Permission permission;
-
-
-
 }

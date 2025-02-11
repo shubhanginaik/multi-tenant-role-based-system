@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface RoleService {
 
-  Role createRole(Role role);
+  Role createRole(String roleName);
 
   List<Role> getAllRoles();
 

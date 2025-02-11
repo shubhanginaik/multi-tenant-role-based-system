@@ -3,10 +3,12 @@ package com.example.multi_tenant_role_based_access_control_system.application;
 import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.PermissionService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Permission;
 import com.example.multi_tenant_role_based_access_control_system.infrastructure.JpaReposotories.PermissionRepository;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class PermissionServiceImpl implements PermissionService {
@@ -18,13 +20,12 @@ public class PermissionServiceImpl implements PermissionService {
   }
 
   @Override
-  public Permission createPermission(Permission permission) {
-    if(permission == null) {
+  public Permission createPermission(@RequestBody @Valid String permissionName) {
+    if(permissionName == null) {
       throw new IllegalArgumentException("Permission cannot be null");
     }
-    if(permission.getName() == null) {
-      throw new IllegalArgumentException("Permission name cannot be null");
-    }
+    Permission permission = new Permission();
+    permission.setName(permissionName);
     return permissionRepository.save(permission);
   }
 

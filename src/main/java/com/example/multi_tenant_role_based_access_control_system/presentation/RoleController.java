@@ -2,6 +2,7 @@ package com.example.multi_tenant_role_based_access_control_system.presentation;
 
 import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.RoleService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Role;
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,8 +26,8 @@ public class RoleController {
   }
 
   @PostMapping
-  public Role createRole(Role role) {
-    return roleService.createRole(role);
+  public Role createRole(@RequestBody String roleName) {
+    return roleService.createRole(roleName);
   }
 
   @GetMapping

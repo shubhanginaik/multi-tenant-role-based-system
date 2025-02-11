@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PermissionService {
-  Permission createPermission(Permission permission);
+  Permission createPermission(String permissionName);
 
   Optional<Permission> getPermissionByName(String permissionName);
 
