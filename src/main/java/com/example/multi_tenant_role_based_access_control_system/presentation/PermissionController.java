@@ -1,6 +1,6 @@
 package com.example.multi_tenant_role_based_access_control_system.presentation;
 
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.PermissionService;
+import com.example.multi_tenant_role_based_access_control_system.application.service.PermissionService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Permission;
 import java.util.Optional;
 import java.util.UUID;

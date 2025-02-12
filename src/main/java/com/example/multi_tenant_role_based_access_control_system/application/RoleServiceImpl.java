@@ -1,6 +1,6 @@
 package com.example.multi_tenant_role_based_access_control_system.application;
 
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.RoleService;
+import com.example.multi_tenant_role_based_access_control_system.application.service.RoleService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Role;
 import com.example.multi_tenant_role_based_access_control_system.infrastructure.JpaReposotories.RoleRepository;
 import java.util.List;

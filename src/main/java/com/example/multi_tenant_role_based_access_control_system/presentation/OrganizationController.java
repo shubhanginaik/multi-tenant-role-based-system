@@ -1,6 +1,6 @@
 package com.example.multi_tenant_role_based_access_control_system.presentation;
 
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.OrganizationService;
+import com.example.multi_tenant_role_based_access_control_system.application.service.OrganizationService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Organization;
 import java.util.List;
 import java.util.Optional;

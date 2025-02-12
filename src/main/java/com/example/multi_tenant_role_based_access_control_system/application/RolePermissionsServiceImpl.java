@@ -2,7 +2,6 @@ package com.example.multi_tenant_role_based_access_control_system.application;
 
 
 
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.RolePermissionsService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Permission;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Role;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.RolePermissions;

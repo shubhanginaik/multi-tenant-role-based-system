@@ -2,8 +2,8 @@ package com.example.multi_tenant_role_based_access_control_system.config;
 
 import com.example.multi_tenant_role_based_access_control_system.application.RolePermissionsServiceImpl;
 import com.example.multi_tenant_role_based_access_control_system.application.tenant.TenantService;
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.PermissionService;
-import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.RoleService;
+import com.example.multi_tenant_role_based_access_control_system.application.service.PermissionService;
+import com.example.multi_tenant_role_based_access_control_system.application.service.RoleService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Permission;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Role;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Tenant;
