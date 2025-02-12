@@ -73,21 +73,17 @@ public class DataLoader implements CommandLineRunner {
 
     //default roles
     Role adminRole = roleRepository.findByName("ADMIN");
-    if (adminRole == null) {
+    if (adminRole == null){
       adminRole = roleService.createRole("ADMIN");
     }
 
-    Role userRole = roleRepository.findByName("USER");
-    userRole = roleService.createRole("USER");
-
-    System.out.println("Roles created: " + adminRole.getName() + ", " + userRole.getName());
-
-    if (adminRole.getRolePermissions().isEmpty()) {
+   Role userRole = roleRepository.findByName("USER");
+    if (userRole == null){
+      userRole = roleService.createRole("USER");
+    }
       rolePermissionsService.assignPermissionsToRole(adminRole, adminPermissions);
       System.out.println("Assigned Permissions to ADMIN Role.");
-    } else {
-      System.out.println("ADMIN Role already has permissions.");
-    }
+
 
     if (userRole.getRolePermissions().isEmpty()) {
       rolePermissionsService.assignPermissionsToRole(userRole, userPermissions);

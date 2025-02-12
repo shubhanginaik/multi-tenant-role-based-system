@@ -2,7 +2,6 @@ package com.example.multi_tenant_role_based_access_control_system.presentation;
 
 import com.example.multi_tenant_role_based_access_control_system.domain.abstraction.RoleService;
 import com.example.multi_tenant_role_based_access_control_system.domain.entity.Role;
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
