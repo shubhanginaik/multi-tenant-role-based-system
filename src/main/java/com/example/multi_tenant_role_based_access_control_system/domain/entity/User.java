@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "users")
 public class User {
   @Id

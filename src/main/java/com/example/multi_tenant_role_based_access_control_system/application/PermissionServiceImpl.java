@@ -20,7 +20,7 @@ public class PermissionServiceImpl implements PermissionService {
   }
 
   @Override
-  public Permission createPermission(@RequestBody @Valid String permissionName) {
+  public Permission createPermission(@RequestBody String permissionName) {
     if(permissionName == null) {
       throw new IllegalArgumentException("Permission cannot be null");
     }
