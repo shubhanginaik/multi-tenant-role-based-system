@@ -13,14 +13,18 @@ public class SchemaMultiTenantConnectionProvider implements MultiTenantConnectio
   public SchemaMultiTenantConnectionProvider(DataSource dataSource) {
     this.dataSource = dataSource;
   }
-
   @Override
   public Connection getConnection(Object tenantIdentifier) throws SQLException {
     if (tenantIdentifier == null) {
       throw new SQLException("Tenant identifier cannot be null");
     }
+
     final Connection connection = dataSource.getConnection();
-    connection.setSchema(tenantIdentifier.toString()); // Convert to string & set schema
+    String tenantSchema = tenantIdentifier.toString();
+
+    System.out.println("Switching to schema: " + tenantSchema);
+    connection.setSchema(tenantSchema);
+
     return connection;
   }
 
@@ -36,7 +40,7 @@ public class SchemaMultiTenantConnectionProvider implements MultiTenantConnectio
 
   @Override
   public void releaseConnection(Object tenantIdentifier, Connection connection) throws SQLException {
-    connection.setSchema("public"); // Reset schema after usage
+    connection.setSchema(tenantIdentifier.toString()); // Reset schema after usage
     connection.close();
   }
 

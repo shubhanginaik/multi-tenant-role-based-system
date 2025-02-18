@@ -25,13 +25,17 @@ public class Role {
   @Column
   private String description;
 
-  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   private Set<RolePermissions> rolePermissions = new HashSet<>();
 
   // Get permissions directly from RolePermissions mapping
   public Set<Permission> getPermissions() {
+    if (rolePermissions == null) {
+      return Set.of(); // Return an empty set instead of null
+    }
+
     return rolePermissions.stream()
         .map(RolePermissions::getPermission)
-        .collect(Collectors.toSet());
+        .collect(Collectors.toUnmodifiableSet()); // Immutable Set
   }
 }

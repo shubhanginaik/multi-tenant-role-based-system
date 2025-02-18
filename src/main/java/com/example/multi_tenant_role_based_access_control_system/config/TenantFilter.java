@@ -18,6 +18,7 @@ public class TenantFilter implements Filter {
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     String tenant = httpRequest.getHeader("X-Tenant-ID");  // Read Tenant from Header
+    System.out.println("TenantFilter: " + tenant);
 
     if (tenant != null) {
       TenantContext.setCurrentTenant(tenant);

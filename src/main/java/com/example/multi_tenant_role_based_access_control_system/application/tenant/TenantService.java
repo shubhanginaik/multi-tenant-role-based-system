@@ -19,15 +19,20 @@ public class TenantService {
   private TenantRepository tenantRepository;
 
   @Transactional
-  public Tenant createTenant(String tenantName) {
-    String schemaName = "tenant_" + tenantName.toLowerCase();
-
-    // Create schema if not exists
+  public Tenant createTenant(String name) {
+//    String name = new org.json.JSONObject(nameJson).getString("name");
+    String schemaName = "tenant_" + name.toLowerCase().replaceAll("[^a-z0-9_]", "");
     jdbcTemplate.execute("CREATE SCHEMA IF NOT EXISTS " + schemaName);
 
-    // Create Tenant Record
+    // 2. Switch to tenant schema
+    jdbcTemplate.execute("SET search_path TO " + schemaName);
+
+    // 3. Force Hibernate to create tables in the new schema
+    createTablesForTenant(schemaName);
+
+    // 4. Save tenant info in DB
     Tenant tenant = new Tenant();
-    tenant.setName(tenantName);
+    tenant.setName(name);
     tenant.setSchemaName(schemaName);
     return tenantRepository.save(tenant);
   }
@@ -43,5 +48,27 @@ public class TenantService {
   @Transactional
   public void deleteTenant(Long id) {
     tenantRepository.deleteById(id);
+  }
+
+  // Force Hibernate to create tables in the new schema
+  private void createTablesForTenant(String schemaName) {
+    jdbcTemplate.execute("SET search_path TO " + schemaName);
+
+    // 🔹 Create roles table
+    jdbcTemplate.execute("""
+        CREATE TABLE IF NOT EXISTS roles (
+             id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+             name VARCHAR(255) NOT NULL,
+             description TEXT
+        )
+    """);
+
+    // 🔹 Create permissions table
+    jdbcTemplate.execute("""
+        CREATE TABLE IF NOT EXISTS permissions (
+            id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+            name VARCHAR(255) NOT NULL
+        )
+    """);
   }
 }

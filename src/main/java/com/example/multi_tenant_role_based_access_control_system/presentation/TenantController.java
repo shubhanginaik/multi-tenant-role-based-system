@@ -16,9 +16,13 @@ public class TenantController {
   @Autowired
   private TenantService tenantService;
 
+  public TenantController(TenantService tenantService) {
+    this.tenantService = tenantService;
+  }
+
   @PostMapping
-  public ResponseEntity<Tenant> createTenant(@RequestParam String tenantName) {
-    Tenant tenant = tenantService.createTenant(tenantName);
+  public ResponseEntity<Tenant> createTenant(@RequestParam String name) {
+    Tenant tenant = tenantService.createTenant(name);
     return ResponseEntity.ok(tenant);
   }
 
